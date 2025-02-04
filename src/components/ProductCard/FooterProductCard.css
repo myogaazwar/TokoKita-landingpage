@@ -1,0 +1,15 @@
+@media (pointer: coarse) {
+  .touch-only {
+    display: flex;
+    transform: translateY(0);
+  }
+}
+
+@media not all and (pointer: coarse) {
+  .touch-only {
+    height: 0;
+    transform: translateX(-100px);
+    opacity: 0;
+    /* display: none; */
+  }
+}

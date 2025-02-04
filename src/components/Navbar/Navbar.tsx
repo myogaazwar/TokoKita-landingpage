@@ -4,54 +4,37 @@ import LinkNav from './NavLink/LinkNav.js';
 import nav from '../../data/nav.js';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { useEffect, useState } from 'react';
+import { HiX } from 'react-icons/hi';
+
+import useNavLink from '../../utils/hook/useNavLink.js';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const [openNavLink, setOpenNavLink] = useState<boolean>(false);
-  const [pageYScroll, setPageYScroll] = useState<boolean>(false);
+  const { setOpenNavLink, openNavLink, pageYScroll, handleHamburgerBtn } =
+    useNavLink();
 
-  function handleHamburgerBtn() {
-    setOpenNavLink((prevState) => !prevState);
+  function closeNavbarMenu() {
+    setOpenNavLink(false);
   }
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const yScroll = window.pageYOffset;
-
-      if (yScroll > 75) {
-        setPageYScroll(true);
-      } else {
-        setPageYScroll(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (openNavLink) {
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
-    }
-
-    return () => document.body.classList.remove('overflow-hidden');
-  }, [openNavLink]);
 
   return (
     <>
       <header className={`bg-mainColor mx-auto w-full`}>
         <nav className='max-w-8xl mx-auto h-24 px-10 grid items-center grid-cols-2 lg:grid-cols-3'>
-          <h1 className='text-3xl font-semibold'>Toko Kita</h1>
+          <h1 className='text-2xl xl:text-3xl font-semibold'>Toko Kita</h1>
 
           <div className='justify-end flex text-3xl lg:hidden'>
-            <GiHamburgerMenu
-              className='cursor-pointer'
-              onClick={handleHamburgerBtn}
-            />
+            {openNavLink ? (
+              <HiX className='cursor-pointer' onClick={handleHamburgerBtn} />
+            ) : (
+              <GiHamburgerMenu
+                className='cursor-pointer'
+                onClick={handleHamburgerBtn}
+              />
+            )}
           </div>
 
-          <ul className='hidden gap-x-16 items-center justify-center lg:flex '>
+          <ul className='hidden gap-x-10 items-center justify-center lg:flex '>
             {nav.map((data, index) => (
               <LinkNav
                 key={index}
@@ -63,7 +46,9 @@ const Navbar = () => {
 
           <span className='hidden gap-x-11 items-center justify-end lg:flex'>
             {iconVector.map((icon) => (
-              <IconHeader key={icon.name} src={icon.src} name={icon.name} />
+              <Link key={icon.name} to={icon.location || ''}>
+                <IconHeader src={icon.src} name={icon.name} />
+              </Link>
             ))}
           </span>
         </nav>
@@ -77,16 +62,20 @@ const Navbar = () => {
         } `}
       >
         <nav className='max-w-8xl mx-auto h-24 px-10 grid items-center grid-cols-2 lg:grid-cols-3 '>
-          <h1 className='text-3xl font-semibold'>Toko Kita</h1>
+          <h1 className='text-2xl xl:text-3xl font-semibold'>Toko Kita</h1>
 
           <div className='justify-end flex text-3xl lg:hidden'>
-            <GiHamburgerMenu
-              className='cursor-pointer'
-              onClick={handleHamburgerBtn}
-            />
+            {openNavLink ? (
+              <HiX className='cursor-pointer' onClick={handleHamburgerBtn} />
+            ) : (
+              <GiHamburgerMenu
+                className='cursor-pointer'
+                onClick={handleHamburgerBtn}
+              />
+            )}
           </div>
 
-          <ul className='hidden gap-x-16 items-center justify-center lg:flex '>
+          <ul className='hidden gap-x-10 items-center justify-center lg:flex '>
             {nav.map((data, index) => (
               <LinkNav
                 key={index}
@@ -98,25 +87,46 @@ const Navbar = () => {
 
           <span className='hidden gap-x-11 items-center justify-end lg:flex'>
             {iconVector.map((icon) => (
-              <IconHeader key={icon.name} src={icon.src} name={icon.name} />
+              <Link key={icon.name} to={icon.location || ''}>
+                <IconHeader src={icon.src} name={icon.name} />
+              </Link>
             ))}
           </span>
         </nav>
       </header>
 
       <div
-        className={`bg-white h-svh z-50 fixed  ${
+        className={`bg-white h-full w-full  z-50 fixed border-t-[1px] flex flex-col gap-y-10  ${
           openNavLink
             ? 'translate-x-0 duration-300 transform ease-in-out  transition-transform'
             : ' duration-200 transform ease-in transition-transform -translate-x-full'
         }`}
       >
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
-        laborum hic ut suscipit vitae culpa cumque aspernatur ad autem. Delectus
-        dignissimos aperiam neque ipsum voluptas atque modi doloribus nulla at
-        itaque, eveniet velit, aliquam adipisci numquam, ea quae inventore amet
-        quidem reiciendis accusantium iusto repellendus non eos. Nostrum, odit.
-        Repellat.
+        <div className='mt-11 w-full flex flex-col items-center gap-y-8 px-10'>
+          {nav.map((data, index) => (
+            <LinkNav
+              key={index}
+              name={data.name}
+              toLocation={data.location}
+              className=' w-full text-center rounded-2xl py-3 transition-all duration-300 hover:scale-105 hover:shadow-sm'
+              onClick={() => closeNavbarMenu()}
+            />
+          ))}
+        </div>
+
+        <div className='w-full flex flex-col items-center justify-center gap-y-5 px-10'>
+          <LinkNav
+            name='Sign in'
+            toLocation='/sign-in'
+            className=' w-full bg-black text-white text-center rounded-2xl py-3 transition-all duration-300 hover:scale-105 hover:shadow-sm'
+          />
+
+          <LinkNav
+            name='Sign Up'
+            toLocation='/sign-up'
+            className=' w-full bg-black text-white text-center rounded-2xl py-3 transition-all duration-300 hover:scale-105 hover:shadow-sm'
+          />
+        </div>
       </div>
     </>
   );

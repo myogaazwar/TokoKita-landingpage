@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SubFooter from './SubFooter';
 
 export default function Footer() {
@@ -43,10 +44,31 @@ export default function Footer() {
         </div>
       </section>
 
-      <section className='mt-[48px] h-full flex flex-col items-start border-t-[1px] border-t-opacity-low2'>
+      <section className='mt-[48px] h-full flex flex-col items-start border-t-[1px] border-t-opacity-low2 gap-y-5'>
         <p className='mt-[35px] text-[16px] font-semibold'>
           2025 Toko Kita. All rights reserved
         </p>
+
+        <div className='w-full flex flex-col lg:flex-row lg:justify-between gap-y-2'>
+          <p>
+            Created by{' '}
+            <Link
+              to={'https://github.com/myogaazwar'}
+              className='text-amber-700 font-bold hover:text-lg hover:transition-all hover:duration-500'
+            >
+              Muhammad Yoga Azwar
+            </Link>
+          </p>
+          <p>
+            Design by{' '}
+            <Link
+              to={'https://dribbble.com/aashifasheikh12'}
+              className='text-amber-700 font-bold hover:text-lg hover:transition-all hover:duration-500'
+            >
+              Aashifa Sheikh
+            </Link>{' '}
+          </p>
+        </div>
       </section>
     </footer>
   );

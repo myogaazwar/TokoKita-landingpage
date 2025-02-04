@@ -1,0 +1,40 @@
+.swiper-slide {
+  @apply transition-all duration-700  opacity-80 transform scale-y-95;
+  width: 488px;
+  height: 450px;
+  margin: auto;
+  object-fit: cover;
+  background-position: center;
+}
+
+.swiper-slide-active {
+  @apply scale-100 opacity-100 transition-all transform duration-700;
+
+  height: 500px;
+  margin: auto;
+  transition-delay: 0.2s;
+  width: 100%;
+}
+
+.custom-next-btn {
+  box-shadow: -3px 1px 17px -3px rgba(0, 0, 0, 0.75);
+}
+
+.pagination-custom {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination-custom .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #e97171;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.pagination-custom .swiper-pagination-bullet-active {
+  background-color: #b88e2f;
+  transform: scale(1.2);
+}

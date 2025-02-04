@@ -6,7 +6,8 @@ import cartIcon from '../../assets/icons/cartIcon.svg'
 const iconVector = [
     {
         name: "user_icon",
-        src : userIcon
+        src : userIcon,
+        location: '/sign-in'
     },
     {
         name: 'search_icon',

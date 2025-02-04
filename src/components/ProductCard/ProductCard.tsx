@@ -1,5 +1,3 @@
-import './productCard.css';
-
 import FooterProductCard from './FooterProductCard';
 import HeaderProductCard from './HeaderProductCard';
 import { BsShareFill } from 'react-icons/bs';
@@ -13,6 +11,7 @@ export type productCardProps = {
   priceNow: number;
   priceBefore?: number;
   discountCut?: number;
+  discountPercent?: number;
   newProduct?: boolean;
 };
 
@@ -26,9 +25,9 @@ export default function ProductCard({
   newProduct,
 }: productCardProps) {
   return (
-    <div className='group/card bg-bg-card relative'>
+    <div className='group/card bg-bg-card relative '>
       <div className='h-full w-full absolute z-10 bg-gray-700 opacity-0 invisible group-hover/card:visible group-hover/card:opacity-65 group-hover/card:transition-opacity group-hover/card:duration-300 group-hover/card:ease-in-out'></div>
-      <div className='h-full w-full absolute hidden  z-50 opacity-100 group-hover/card:flex group-hover/card:flex-col group-hover/card:justify-center group-hover/card:items-center   '>
+      <div className='h-full w-full absolute hidden  z-50 opacity-100 group-hover/card:flex group-hover/card:flex-col group-hover/card:justify-center group-hover/card:items-center  '>
         <button className=' text-thirdColor bg-white cursor-pointer w-40 h-10  lg:w-52 lg:h-12 '>
           Add to cart
         </button>

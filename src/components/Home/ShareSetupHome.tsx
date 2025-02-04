@@ -18,7 +18,7 @@ export default function ShareSetupHome() {
         <h3 className='font-bold text-[24px] md:text-[40px]'>#TokoKita</h3>
       </div>
 
-      <div className='w-full h-fit   overflow-x-auto'>
+      <div className='w-full h-fit   overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
         <div className='h-fit  grid  grid-cols-12 grid-rows-2 gap-x-2 md:gap-x-2 md:gap-y-5 w-svh  md:w-full'>
           <img src={sharingOne} className='w-full' />
           <img

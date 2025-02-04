@@ -13,7 +13,7 @@ export default function HeaderProductCard({
 }: headerProductProps) {
   return (
     <div className='relative w-full'>
-      <img src={imgSrc} alt={name} className='w-full' />
+      <img src={imgSrc} alt={name} className='w-full h-[400px] object-cover' />
       {discountCut && (
         <span className='absolute top-5 right-5 bg-fourthColor text-defaultColor w-12 py-3 rounded-full text-center'>
           -{discountCut}%
